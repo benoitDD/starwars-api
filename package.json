@@ -1,0 +1,37 @@
+{
+  "name": "starwars-api",
+  "version": "1.0.0",
+  "description": "Une api qui permet de consulter et d'enrichir des informations sur les personnages, planètes, vaisseaux et véhicules de l'univers starwars.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist",
+    "build-dev": "webpack --config webpack/webpack.dev.js",
+    "build-prod": "webpack --config webpack/webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benoitDD/starwars-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benoitDD/starwars-api/issues"
+  },
+  "homepage": "https://github.com/benoitDD/starwars-api#readme",
+  "dependencies": {
+    "express": "4.17.0",
+    "loglevel": "1.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "babel-loader": "8.0.6",
+    "clean-webpack-plugin": "2.0.2",
+    "dotenv": "8.0.0",
+    "webpack": "4.32.1",
+    "webpack-cli": "3.3.2",
+    "webpack-merge": "4.2.1",
+    "webpack-node-externals": "1.7.2"
+  }
+}
