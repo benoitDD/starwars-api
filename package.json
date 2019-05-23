@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist",
+    "debug": "node --inspect dist",
     "build-dev": "webpack --config webpack/webpack.dev.js",
     "build-prod": "webpack --config webpack/webpack.prod.js",
-    "watch": "nodemon --exec \"npm run build-dev && npm start\""
+    "watch": "nodemon --exec \"npm run build-dev && npm start\"",
+    "watch-debug": "nodemon --exec \"npm run build-dev && npm run debug\""
   },
   "repository": {
     "type": "git",
