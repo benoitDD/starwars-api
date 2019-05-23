@@ -1,0 +1,64 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:latest'
+            args '-p 9090:9090'
+        }
+    }
+    environment {
+        PORT=9090
+    } 
+    stages {
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Schema swapi') {
+            steps {
+                sh 'npm run get-schema'
+            }
+        }
+        stage('Linter') {
+            steps {
+                sh 'npm run linter'
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    try{
+                        sh 'npm test'
+                    }catch(Exception e){
+                        def skipTestFailure = input(message: 'Test en échec, continuer ?', 
+                            parameters: [booleanParam(defaultValue: true, 
+                            description: 'continuer',name: 'oui ?')])
+                        if(skipTestFailure){
+                            currentBuild.result = 'UNSTABLE'
+                        } else{
+                            currentBuild.result = 'FAILURE'
+                            error('Test en échec')
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build-dev'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Clean') {
+            steps {
+                sh './jenkins/scripts/clean.sh'
+            }
+        }
+    }
+}
