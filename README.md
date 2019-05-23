@@ -40,5 +40,6 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
   * dotenv
 * npm
 * vsc debug
+* vsc plugin Apollo Graphql
 
 
