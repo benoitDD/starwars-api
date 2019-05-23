@@ -31,6 +31,9 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
 
 * nodejs
   * express
+  * jest
+    * test
+    * coverage
   * eslint
     * graphql
   * nodemon

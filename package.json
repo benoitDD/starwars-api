@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist",
+    "test": "jest",
+    "test-coverage": "jest --coverage",
     "debug": "node --inspect dist",
     "build-dev": "webpack --config webpack/webpack.dev.js",
     "build-prod": "webpack --config webpack/webpack.prod.js",
@@ -42,6 +44,7 @@
     "eslint-plugin-graphql": "3.0.3",
     "graphql-cli": "3.0.11",
     "graphql-schema-linter": "0.2.0",
+    "jest": "24.8.0",
     "nodemon": "1.19.0",
     "webpack": "4.32.1",
     "webpack-cli": "3.3.2",
