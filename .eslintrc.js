@@ -49,7 +49,12 @@ module.exports = {
         ],
         "semi": [
             "error",
-            "never"
-        ]
+            "never"],
+        "no-sync": "error",
+        "array-bracket-spacing": ["error", "never"],
+        "block-spacing": "error",
+        "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+        "camelcase": "error",
+        "capitalized-comments": ["error"]
     }
 };
