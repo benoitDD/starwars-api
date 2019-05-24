@@ -1,0 +1,30 @@
+query AllPeople($after:String, $first:Int, $before: String, $last:Int) {
+    allPeople(after:$after, first:$first, before: $before, last:$last) {
+        totalCount
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        people {
+            ...PersonFragment
+        }
+    }
+}
+
+query Person($id:ID!){
+    person(id:$id){
+        ...PersonFragment
+    }
+}
+
+fragment PersonFragment on Person {
+    id
+    name
+    birthYear
+    eyeColor
+    gender
+    hairColor
+    height
+    mass
+    skinColor
+}
