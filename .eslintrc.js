@@ -14,6 +14,8 @@ module.exports = {
         "process": "readonly",
         "test": "readonly",
         "expect": "readonly",
+        "describe": "readonly",
+        "jest": "readonly"
     },
     plugins: [
         'graphql'

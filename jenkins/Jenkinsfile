@@ -22,6 +22,8 @@ pipeline {
         stage('Linter') {
             steps {
                 sh 'npm run linter'
+                sh 'npm run linter-query'
+                sh 'npm run linter-schema'
             }
         }
         stage('Test') {
