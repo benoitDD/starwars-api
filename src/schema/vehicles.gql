@@ -1,0 +1,41 @@
+"""
+Le type véhicule
+"""
+type Vehicle{
+    "L'identifiant unique du véhicule"
+    id: ID!
+    "Le nom du véhicule"
+    name: String!
+    "Le modèle du véhicule"
+    model: String
+    "La classe du véhicule"
+    vehicleClass: String
+    "Les fabricants du véhicule"
+    manufacturers: [String]
+    "Le coût du véhicule en credit Galactic"
+    costInCredits: Float
+    "La taille du véhicule en mètres"
+    length: Float
+    "Le nombre de personnes nécessaires pour conduire le véhicule"
+    crew: String
+    "Le nombre de personnes non-essentiels embarquables dans le véhicule"
+    passengers: String
+    "La vitesse maximal du véhicule dans l'atmosphère"
+    maxAtmospheringSpeed: Int
+    "Le poids maximum embarquable du véhicule en kilogramme"
+    cargoCapacity: Float
+    "Le temps maximal pour fournir des provisions sans réapprovisionnement"
+    consumables: String
+    "Les personnes du véhicule"
+    persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+}
+
+"""
+La pagination pour les véhicles de starwars
+"""
+type AllVehiclesResponse{
+    "Information de la pagination"
+    pageInfo: PageInfo
+    "Une page de véhicules"
+    vehicles:[Vehicle]
+}

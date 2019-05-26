@@ -1,0 +1,35 @@
+query AllStarships($after:String, $first:Int, $before: String, $last:Int) {
+    allStarships(after:$after, first:$first, before: $before, last:$last) {
+        totalCount
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        starships {
+            ...StarshipFragment
+        }
+    }
+}
+
+query Starship($id:ID!){
+    starship(id:$id){
+        ...StarshipFragment
+    }
+}
+
+fragment StarshipFragment on Starship {
+    id
+    name
+    model
+    starshipClass
+    manufacturers
+    costInCredits
+    length
+    crew
+    passengers
+    maxAtmospheringSpeed
+    hyperdriveRating
+    MGLT
+    cargoCapacity
+    consumables
+}

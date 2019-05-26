@@ -1,0 +1,39 @@
+"""
+Le type espèce
+"""
+type Specie{
+    "L'identifiant unique de l'espèce"
+    id: ID!
+    "Le nom de l'espèce"
+    name: String!
+    "La classification de l'espèce. Exemples: Mamifère, Humain, Reptile"
+    classification: String
+    "La désignation de l'espèce. Exemples: Intelligent"
+    designation: String
+    "La taille moyenne de l'espèce en centimètres"
+    averageHeight: Float
+    "Le temps de vie moyen de l'espèce en année."
+    averageLifespan: Int
+    "Les différentes couleurs de yeux possibles de l'espèce"
+    eyeColors: [String]
+    "Les différentes couleurs de cheveux possibles de l'espèce"
+    hairColors: [String]
+    "Les différentes couleurs de peaux possibles de l'espèce"
+    skinColors: [String]
+    "Le langage couramment parlé de l'espèce"
+    language: String
+    "Les personnes de l'espèce"
+    persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+    "La planète de l'espèce"
+    planet: Planet
+}
+
+"""
+La pagination pour les espèces de starwars
+"""
+type AllSpeciesResponse{
+    "Information de la pagination"
+    pageInfo: PageInfo
+    "Une page de planètes"
+    species:[Specie]
+}
