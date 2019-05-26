@@ -1,0 +1,31 @@
+query AllSpecies($after:String, $first:Int, $before: String, $last:Int) {
+    allSpecies(after:$after, first:$first, before: $before, last:$last) {
+        totalCount
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        species {
+            ...SpecieFragment
+        }
+    }
+}
+
+query Specie($id:ID!){
+    species(id:$id){
+        ...SpecieFragment
+    }
+}
+
+fragment SpecieFragment on Species {
+    id
+    name
+    classification
+    designation
+    averageHeight
+    averageLifespan
+    eyeColors
+    hairColors
+    skinColors
+    language
+}

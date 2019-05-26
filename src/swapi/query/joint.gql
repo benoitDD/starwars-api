@@ -1,0 +1,119 @@
+#import "./planets.gql"
+#import "./persons.gql"
+#import "./species.gql"
+#import "./starships.gql"
+#import "./vehicles.gql"
+
+query PlanetOfPerson($id:ID!){
+    person(id:$id){
+        homeworld{
+            ...PlanetFragment
+        }
+    }
+}
+
+query SpecieOfPerson($id:ID!){
+    person(id:$id){
+        species{
+            ...SpecieFragment
+        }
+    }
+}
+
+query AllStarshipsOfPerson($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    person(id:$id){
+        starshipConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            starships {
+                ...StarshipFragment
+            }
+        }
+    }
+}
+
+query AllVehiclesOfPerson($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    person(id:$id){
+        vehicleConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            vehicles {
+                ...VehicleFragment
+            }
+        }
+    }
+}
+
+query AllPersonsOfPlanet($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    planet(id:$id){
+        residentConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            residents {
+                ...PersonFragment
+            }
+        }
+    }
+}
+
+query AllPersonsOfSpecie($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    species(id:$id){
+        personConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            people {
+                ...PersonFragment
+            }
+        }
+    }
+}
+
+query PlanetOfSpecie($id:ID!){
+    species(id:$id){
+        homeworld{
+            ...PlanetFragment
+        }
+    }
+}
+
+query AllPersonsOfStarship($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    starship(id:$id){
+        pilotConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            pilots {
+                ...PersonFragment
+            }
+        }
+    }
+}
+
+query AllPersonsOfVehicle($id:ID!, $after:String, $first:Int, $before: String, $last:Int){
+    vehicle(id:$id){
+        pilotConnection(after:$after, first:$first, before: $before, last:$last){
+            totalCount
+            pageInfo {
+                startCursor
+                endCursor
+            }
+            pilots {
+                ...PersonFragment
+            }
+        }
+    }
+}

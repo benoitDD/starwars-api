@@ -1,3 +1,10 @@
+#import "./planets.gql"
+#import "./persons.gql"
+#import "./utils.gql"
+#import "./species.gql"
+#import "./vehicles.gql"
+#import "./starships.gql"
+
 """
 L'entrée principale du schéma
 """
@@ -6,54 +13,20 @@ type Query {
     allPersons(pageSize: Int, after: String, before: String):AllPersonsResponse!
     "Une personne de starwars"
     person(id: ID!):Person
-}
-
-"""
-Le type pagination
-"""
-type PageInfo {
-    "L'identifiant du premier objet de la page retourné"
-    startCursor: String!
-    "L'identifiant du dernier objet de la page retourné"
-    endCursor: String!
-    "Le nombre total d'objets que contient la pagination"
-    totalCount: Int!
-    "Il existe une page suivante"
-    hasPreviousPage: Boolean!
-    "Il existe une page précedente"
-    hasNextPage: Boolean!
-}
-
-"""
-La pagination pour les personnages de starwars
-"""
-type AllPersonsResponse{
-    "Information de la pagination"
-    pageInfo: PageInfo
-    "Une page de personnes"
-    persons:[Person]!
-}
-
-"""
-Le type personne
-"""
-type Person{
-    "L'identifiant unique de la personne"
-    id: ID!
-    "Le nom de la personne"
-    name: String!
-    "La date de naissance de la personne en BBY"
-    birthYear: String
-    "Les couleurs des yeux de la personne"
-    eyeColor: String
-    "Le sexe de la personne"
-    gender: String
-    "La couleur des cheveux de la personne"
-    hairColor: String
-    "La taille de la personne"
-    height: Int
-    "Le poids de la personne"
-    mass: Float
-    "La couleur de peau de la personne"
-    skinColor: String
+    "Les planètes de starwars en pagination"
+    allPlanets(pageSize: Int, after: String, before: String):AllPlanetsResponse!
+    "Une planète de starwars"
+    planet(id: ID!):Planet
+    "Les espèces de starwars en pagination"
+    allSpecies(pageSize: Int, after: String, before: String):AllSpeciesResponse!
+    "Une espèce de starwars"
+    specie(id: ID!):Specie
+    "Les véhicules de starwars en pagination"
+    allVehicles(pageSize: Int, after: String, before: String):AllVehiclesResponse!
+    "Un véhicule de starwars"
+    vehicle(id: ID!):Vehicle
+    "Les vaiseaux de starwars en pagination"
+    allStarships(pageSize: Int, after: String, before: String):AllStarshipsResponse!
+    "Un vaisseau de starwars"
+    starship(id: ID!):Starship
 }
