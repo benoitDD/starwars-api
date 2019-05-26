@@ -1,0 +1,15 @@
+"""
+Le type pagination
+"""
+type PageInfo {
+    "L'identifiant du premier objet de la page retourné"
+    startCursor: String
+    "L'identifiant du dernier objet de la page retourné"
+    endCursor: String
+    "Le nombre total d'objets que contient la pagination"
+    totalCount: Int!
+    "Il existe une page suivante"
+    hasPreviousPage: Boolean!
+    "Il existe une page précedente"
+    hasNextPage: Boolean!
+}

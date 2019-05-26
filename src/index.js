@@ -1,7 +1,7 @@
 import express from 'express'
 import * as log from 'loglevel'
 import {ApolloServer} from 'apollo-server-express'
-import swapi from './swapi'
+import {dataSources} from './dataSources'
 import typeDefs from './schema/index.gql'
 import resolvers from  './resolvers'
 import {formatError} from './utils'
@@ -12,9 +12,7 @@ const server = new ApolloServer({
     debug: process.env.NODE_ENV === 'development',
     typeDefs,
     resolvers,
-    dataSources: () => ({
-        swapi,
-    }),
+    dataSources: () => (dataSources),
     formatError
 })
 

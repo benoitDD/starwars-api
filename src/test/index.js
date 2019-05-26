@@ -1,40 +1,46 @@
-const responseGetAllPerson =  {
+import {GraphQLDataSource} from 'apollo-datasource-graphql'
+
+function mockOnceQuery(nameKey, value){
+    GraphQLDataSource.prototype.query.mockReturnValueOnce(Promise.resolve({
+        data: {
+            [nameKey]: value
+        }
+    }))
+}
+    
+function mockNullOnceQuery(){
+    GraphQLDataSource.prototype.query.mockReturnValueOnce(Promise.resolve({
+        data: {}
+    }))
+}
+
+function mockThrowOnceQuery(error){
+    GraphQLDataSource.prototype.query.mockImplementationOnce(() => (Promise.reject(error)))
+}
+
+const valuePaginationSWAPI = {
     totalCount: 50,
     pageInfo: {
-        startCursor: 'person-5',
-        endCursor: 'person-7'
-    },
-    people: [{id: '1', name: 'toto'}, {id: '2', name: 'titi'}]
-}
-
-let getAllPeople = jest.fn(() => 
-    (Promise.resolve({
-        data: {
-            allPeople: responseGetAllPerson
-        }
-    }))
-)
-
-const responseGetPerson = {
-    id: 'id-1',
-    name: 'toto'
-}
-
-let getPerson = jest.fn(() => 
-    (Promise.resolve({
-        data: {
-            person: responseGetPerson
-        }
-    }))
-)
-
-let dataSourcesMock = {
-    swapi: {
-        persons: {
-            getAllPeople,
-            getPerson
-        }
+        startCursor: 'object-5',
+        endCursor: 'object-7'
     }
 }
 
-export {dataSourcesMock, responseGetAllPerson, responseGetPerson}
+const valuePagination = {
+    pageInfo: {
+        startCursor: valuePaginationSWAPI.pageInfo.startCursor,
+        endCursor: valuePaginationSWAPI.pageInfo.endCursor,
+        totalCount: valuePaginationSWAPI.totalCount,
+        hasPreviousPage: true,
+        hasNextPage: true,
+    }
+}
+
+function valueGetAllObjectSWAPI(key, value){
+    return {
+        ...valuePaginationSWAPI,
+        [key]: value
+    }
+}
+    
+export {mockOnceQuery, mockNullOnceQuery, mockThrowOnceQuery, valueGetAllObjectSWAPI, valuePagination}

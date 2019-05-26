@@ -1,0 +1,45 @@
+"""
+Le type vaisseau
+"""
+type Starship{
+    "L'identifiant unique du vaisseau"
+    id: ID!
+    "Le nom du vaisseau"
+    name: String!
+    "Le modèle du vaisseau"
+    model: String
+    "La classe du vaisseau"
+    starshipClass: String
+    "Les fabriquants du vaisseau"
+    manufacturers: [String]
+    "Le coût du vaisseau en credit Galactic"
+    costInCredits: Float
+    "La taille du vaisseau en mètres"
+    length: Float
+    "Le nombre de personnes nécessaires pour conduire le vaisseau"
+    crew: String
+    "Le nombre de personnes non-essentiels embarquables dans le vaisseau"
+    passengers: String
+    "La vitesse maximal du véhicule dans l'atmosphère"
+    maxAtmospheringSpeed: Int
+    "La classe de conduite en hyper vitesse du vaisseau"
+    hyperdriveRating: Float
+    "Le nombre de Megalight que ce vaisseau peut voyager en une heure"
+    MGLT: Int
+    "Le poids maximum embarquable du vaisseau en kilogramme"
+    cargoCapacity: Float
+    "Le temps maximal pour fournir des provisions sans réapprovisionnement"
+    consumables: String
+    "Les personnes du vaisseau"
+    persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+}
+
+"""
+La pagination pour les vaisseau de starwars
+"""
+type AllStarshipsResponse{
+    "Information de la pagination"
+    pageInfo: PageInfo
+    "Une page de vaisseau"
+    starships:[Starship]
+}

@@ -1,0 +1,33 @@
+query AllVehicles($after:String, $first:Int, $before: String, $last:Int) {
+    allVehicles(after:$after, first:$first, before: $before, last:$last) {
+        totalCount
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        vehicles {
+            ...VehicleFragment
+        }
+    }
+}
+
+query Vehicle($id:ID!){
+    vehicle(id:$id){
+        ...VehicleFragment
+    }
+}
+
+fragment VehicleFragment on Vehicle {
+    id
+    name
+    model
+    vehicleClass
+    manufacturers
+    costInCredits
+    length
+    crew
+    passengers
+    maxAtmospheringSpeed
+    cargoCapacity
+    consumables
+}

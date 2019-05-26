@@ -1,0 +1,37 @@
+"""
+Le type planète
+"""
+type Planet{
+    "L'identifiant unique de la planète"
+    id: ID!
+    "Le nom de la planète"
+    name: String!
+    "Le diamètre de la planète en kilomètres"
+    diameter: Int
+    "La durée de sa période de rotation autour de son axe de la planète en heures"
+    rotationPeriod: Int
+    "La durée de sa période orbital autour de son étoile de la planète en jours"
+    orbitalPeriod: Int
+    "La gravité de la planète en g. Exemple 1 représente une fois la gravité de la terre."
+    gravity: String
+    "Le nombre d'habitant de la planète"
+    population: Float
+    "Les différents climats de la planète"
+    climates: [String]
+    "LEs différents terrains de la planète"
+    terrains: [String]
+    "Le pourcentagede d'eau à la surface de la planète"
+    surfaceWater: Float
+    "Les personnes de la planète"
+    persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+}
+
+"""
+La pagination pour les planètes de starwars
+"""
+type AllPlanetsResponse{
+    "Information de la pagination"
+    pageInfo: PageInfo
+    "Une page de planètes"
+    planets:[Planet]
+}

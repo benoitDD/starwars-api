@@ -1,0 +1,31 @@
+query AllPlanets($after:String, $first:Int, $before: String, $last:Int) {
+    allPlanets(after:$after, first:$first, before: $before, last:$last) {
+        totalCount
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        planets {
+            ...PlanetFragment
+        }
+    }
+}
+
+query Planet($id:ID!){
+    planet(id:$id){
+        ...PlanetFragment
+    }
+}
+
+fragment PlanetFragment on Planet {
+    id
+    name
+    diameter
+    rotationPeriod
+    orbitalPeriod
+    gravity
+    population
+    climates
+    terrains
+    surfaceWater
+}
