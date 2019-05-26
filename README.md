@@ -41,6 +41,8 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
     * babel
   * graphql
   * dotenv
+  * apollo server
+  * apollo datasource graphql
 * npm
 * jenkins
 * vsc debug
