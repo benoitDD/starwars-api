@@ -13,9 +13,12 @@ A l'intérieur du projet qu'on vient de télécharger :
 
 Il faut créer un fichier **.env** avec ces informations :
 
-`
+```
 PORT=9090
-`
+
+#Les clients qui sont autorisés à se connecter à cette api
+CORS_ORIGIN='http://localhost:5000'
+```
 
 Le numéro du port est libre de choix.
 
