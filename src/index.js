@@ -5,6 +5,7 @@ import {dataSources} from './dataSources'
 import typeDefs from './schema/index.gql'
 import resolvers from  './resolvers'
 import {formatError} from './utils'
+import cors from 'cors'
 
 log.setLevel('INFO')
 
@@ -17,6 +18,13 @@ const server = new ApolloServer({
 })
 
 const app = express()
+
+var corsOptions = {
+    origin: process.env.CORS_ORIGIN,
+    optionsSuccessStatus: 200,
+    maxAge: 600
+}
+app.use(cors(corsOptions))
 
 server.applyMiddleware({app})
 
