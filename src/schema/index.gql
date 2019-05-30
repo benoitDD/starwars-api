@@ -29,4 +29,6 @@ type Query {
     allStarships(pageSize: Int, after: String, before: String):AllStarshipsResponse!
     "Un vaisseau de starwars"
     starship(id: ID!):Starship
+    "Rechercher des personnes, planètes, espèces, vaisseaux et véhicules"
+    search(text: String!):[SearchResult]!
 }

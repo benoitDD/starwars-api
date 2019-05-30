@@ -3,6 +3,7 @@ import resolversPlanets from './planets'
 import resolversSpecies from './species'
 import resolversStarships from './starships'
 import resolversVehicles from './vehicles'
+import resolversSearch from './search'
 
 function createResolvers(...args){
     var resolvers = {}
@@ -18,6 +19,6 @@ function createResolvers(...args){
 }
 
 const resolvers = createResolvers(resolversPersons, resolversPlanets, resolversSpecies,
-    resolversStarships, resolversVehicles)
+    resolversStarships, resolversVehicles, resolversSearch)
 
 export default resolvers
