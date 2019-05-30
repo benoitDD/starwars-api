@@ -13,3 +13,6 @@ type PageInfo {
     "Il existe une page précedente"
     hasNextPage: Boolean!
 }
+
+"L'ensemble des objets de starwars"
+union SearchResult = Person | Planet | Specie | Vehicle | Starship
