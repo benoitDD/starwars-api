@@ -30,5 +30,15 @@ type Query {
     "Un vaisseau de starwars"
     starship(id: ID!):Starship
     "Rechercher des personnes, planètes, espèces, vaisseaux et véhicules"
-    search(text: String!):[SearchResult]!
+    search(text: String!):[starwarsObject]!
+}
+
+"""
+Les mutations du schéma
+"""
+type Mutation {
+    "Ajouter une image d'un objet"
+    addImageHeader(inputAddImage: InputAddImage!):ResponseMutation
+    "Supprimer une image d'un objet"
+    removeImage(inputRemoveImage: InputRemoveImage!):ResponseMutation
 }

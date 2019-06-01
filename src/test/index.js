@@ -42,5 +42,25 @@ function valueGetAllObjectSWAPI(key, value){
         [key]: value
     }
 }
+
+const objectMore = {
+    idExternal: '123456789',
+    type: 'Person',
+    imagesHeader: [{
+        _id: '5cf1935c0b953f43f84432f4',
+        description: '',
+        filename: '/images/78092401.jpeg',
+        title: 'luke skywalker',
+        __typename: 'Image'
+    }, {
+        _id: '5cf193bf0b953f43f84432f5',
+        description: '',
+        filename: '/images/661149c0.jpeg',
+        title: 'luke skywalker with saberlight',
+        __typename: 'Image'
+    }],
+    __typename: 'ObjectMore'
+}
     
-export {mockOnceQuery, mockNullOnceQuery, mockThrowOnceQuery, valueGetAllObjectSWAPI, valuePagination}
+export {mockOnceQuery, mockNullOnceQuery, mockThrowOnceQuery, valueGetAllObjectSWAPI, valuePagination,
+    objectMore}

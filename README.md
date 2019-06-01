@@ -16,11 +16,22 @@ Il faut créer un fichier **.env** avec ces informations :
 ```
 PORT=9090
 
-#Les clients qui sont autorisés à se connecter à cette api
+#Les applications qui sont autorisés à se connecter à cette api
 CORS_ORIGIN='http://localhost:5000'
-```
 
-Le numéro du port est libre de choix.
+#L'api SWAPI
+SWAPI_URL='http://localhost:8080'
+
+#Le login et mot de passe de la base donnée
+DB_LOGIN=TON_LOGIN
+DB_PASSWORD=TON_MOT_DE_PASSE
+
+#Le répertoire où l'on sauvegarde les images des utilisateurs
+DIRECTORY_IMAGE=images
+
+#Le chemin où l'utilisateur peut accéder aux images
+PATH_IMAGES=/images/
+```
 
 Ensuite on peut packager et lancer l'application avec :
 
@@ -46,6 +57,8 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
   * dotenv
   * apollo server
   * apollo datasource graphql
+  * mongoose
+    * mongodb
 * npm
 * jenkins
 * vsc debug

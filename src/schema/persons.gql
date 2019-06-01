@@ -38,4 +38,6 @@ type Person{
     starships(pageSize: Int, after: String, before: String):AllStarshipsResponse!
     "Les véhicules de la personne"
     vehicles(pageSize: Int, after: String, before: String):AllVehiclesResponse!
+    "Les informations supplémentaires de la personne"
+    more: ObjectMore
 }

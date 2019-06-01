@@ -26,6 +26,8 @@ type Specie{
     persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
     "La planète de l'espèce"
     planet: Planet
+    "Les informations supplémentaires de l'espèce"
+    more: ObjectMore
 }
 
 """

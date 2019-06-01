@@ -1,9 +1,7 @@
 import Query from './query'
-import Type from './type'
 
 const resolvers = {
-    Query,
-    Type
+    Query
 }
 
 export default resolvers

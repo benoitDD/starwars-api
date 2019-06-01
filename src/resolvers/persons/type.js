@@ -16,6 +16,9 @@ const Type = {
         vehicles: (person, {pageSize = 10, after, before}, { dataSources }) => {
             return dataSources.swapi.getAllVehiclesOfPerson(person.id, pageSize, after, before)
                 .then(allVehiclesSWAPIToMe())
+        },
+        more: (person, _, {dataSources}) => {
+            return dataSources.database.objects.findObjectByIdExternal(person.id)
         }
     }
 }

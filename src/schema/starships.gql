@@ -32,6 +32,8 @@ type Starship{
     consumables: String
     "Les personnes du vaisseau"
     persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+    "Les informations supplémentaires du vaisseau"
+    more: ObjectMore
 }
 
 """

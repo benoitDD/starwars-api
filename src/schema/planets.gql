@@ -24,6 +24,8 @@ type Planet{
     surfaceWater: Float
     "Les personnes de la planète"
     persons(pageSize: Int, after: String, before: String):AllPersonsResponse!
+    "Les informations supplémentaires de la planète"
+    more: ObjectMore
 }
 
 """

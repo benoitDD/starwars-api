@@ -6,6 +6,7 @@ import typeDefs from './schema/index.gql'
 import resolvers from  './resolvers'
 import {formatError} from './utils'
 import cors from 'cors'
+import {connectDatabase} from './database'
 
 log.setLevel('INFO')
 
@@ -18,6 +19,8 @@ const server = new ApolloServer({
 })
 
 const app = express()
+
+app.use(process.env.PATH_IMAGES, express.static(process.env.DIRECTORY_IMAGE))
 
 var corsOptions = {
     origin: process.env.CORS_ORIGIN,
@@ -35,5 +38,11 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 9090
 
 app.listen(PORT, () => {
-    log.info(`API démarré en mode ${process.env.NODE_ENV} sur le port ${PORT}`)
+    connectDatabase()
+        .then(() => (
+            log.info(`API démarré en mode ${process.env.NODE_ENV} sur le port ${PORT}`)
+        ))
+        .catch(err => (
+            log.error(`Error while connection to the database: ${err.message}`)
+        ))
 })

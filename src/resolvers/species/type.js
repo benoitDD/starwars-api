@@ -8,6 +8,9 @@ const Type = {
         },
         planet: (specie, _, { dataSources }) => {
             return dataSources.swapi.getPlanetOfSpecie(specie.id)
+        },
+        more: (person, _, {dataSources}) => {
+            return dataSources.database.objects.findObjectByIdExternal(person.id)
         }
     }
 }

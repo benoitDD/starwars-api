@@ -4,6 +4,7 @@ import resolversSpecies from './species'
 import resolversStarships from './starships'
 import resolversVehicles from './vehicles'
 import resolversSearch from './search'
+import resolversCommun from './commun'
 
 function createResolvers(...args){
     var resolvers = {}
@@ -14,11 +15,14 @@ function createResolvers(...args){
         if(resolver.Type){
             resolvers = {...resolvers, ...resolver.Type}
         }
+        if(resolver.Mutation){
+            resolvers.Mutation = {...resolvers.Mutation, ...resolver.Mutation}
+        }
     })
     return resolvers
 }
 
 const resolvers = createResolvers(resolversPersons, resolversPlanets, resolversSpecies,
-    resolversStarships, resolversVehicles, resolversSearch)
+    resolversStarships, resolversVehicles, resolversSearch, resolversCommun)
 
 export default resolvers

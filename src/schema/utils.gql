@@ -14,5 +14,78 @@ type PageInfo {
     hasNextPage: Boolean!
 }
 
-"L'ensemble des objets de starwars"
-union SearchResult = Person | Planet | Specie | Vehicle | Starship
+"""L'ensemble des objets de starwars"""
+union starwarsObject = Person | Planet | Specie | Vehicle | Starship
+
+"""Les paramètres pour ajouter une image"""
+input InputAddImage{
+    "L'identifiant externe de l'objet: celui de l'api SWAPI"
+    idExternal: ID!
+    "Le type de l'objet"
+    type: Type!
+    "L'image à ajouter"
+    imageHeader: InputImage!
+}
+
+"""Le type d'un objet"""
+enum Type {
+    Person
+    Planet
+    Specie
+    Starship
+    Vehicle
+}
+
+"""L'image à ajouter"""
+input InputImage {
+    "Le fichier de l'image"
+    file: Upload!
+    "Le titre de l'image"
+    title: String!
+    "La description de l'image"
+    description: String
+}
+
+"""L'image à supprimer"""
+input InputRemoveImage {
+    idExternal: ID!
+    idImage: ID!
+}
+
+"""La réponse lors du mutation"""
+type ResponseMutation{
+    "La mutation est réussi ou elle présente une erreur"
+    success: Boolean!
+    "Le message d'erreur s'il y en a une"
+    message: String
+    "Les détails de l'erreur par arguements donnés en entré de la mutation"
+    details: [DetailError]
+    "L'objet mis à jour par la mutation"
+    object: starwarsObject
+}
+
+"""Un détail d'une erreur: exemple key: 'title', message: 'Le titre est obligatoire'"""
+type DetailError{
+    "L'identifiant de l'erreur"
+    key: String
+    "Le message de l'erreur"
+    message: String
+}
+
+"""Des information supplémentaires de l'objet"""
+type ObjectMore {
+    "Les images correspondantes à l'objet"
+    imagesHeader(first:Boolean): [Image]
+}
+
+"""Le type image"""
+type Image{
+    "L'identifiant de l'image"
+    _id: ID!
+    "Le chemin de l'image"
+    filename: String
+    "Le titre de l'image"
+    title: String
+    "La description de l'image"
+    description: String
+}
