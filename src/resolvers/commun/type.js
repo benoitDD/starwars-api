@@ -6,7 +6,7 @@ const Type = {
     },
     Image: {
         filename: image => {
-            return process.env.PATH_IMAGES + image.filename
+            return `${process.env.PATH_IMAGES}/${image.filename}`
         }
     },
     ObjectMore: {

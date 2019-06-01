@@ -20,7 +20,7 @@ const server = new ApolloServer({
 
 const app = express()
 
-app.use(process.env.PATH_IMAGES, express.static(process.env.DIRECTORY_IMAGE))
+app.use(process.env.PATH_IMAGES, express.static(`${__dirname}/../${process.env.DIRECTORY_IMAGE}`))
 
 var corsOptions = {
     origin: process.env.CORS_ORIGIN,

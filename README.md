@@ -30,7 +30,7 @@ DB_PASSWORD=TON_MOT_DE_PASSE
 DIRECTORY_IMAGE=images
 
 #Le chemin où l'utilisateur peut accéder aux images
-PATH_IMAGES=/images/
+PATH_IMAGES=/images
 ```
 
 Ensuite on peut packager et lancer l'application avec :

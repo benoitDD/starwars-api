@@ -49,6 +49,9 @@ module.exports = env => {
 		plugins,
 		resolve: {
 			symlinks: false
+		},
+		node: {
+			__dirname: false
 		}
 	}
 }
