@@ -8,6 +8,12 @@ pipeline {
     environment {
         PORT=9090
         SWAPI_URL='http://192.168.1.69:8080'
+        CORS_ORIGIN='http://localhost:5000'
+        STARWARS_DB_CREDS = credentials('DB_STARWARS_CREDENTIAL')
+        DB_LOGIN = "$STARWARS_DB_CREDS_USR"
+        DB_PASSWORD = "$STARWARS_DB_CREDS_PSW"
+        DIRECTORY_IMAGE='images'
+        PATH_IMAGES='/images'
     } 
     stages {
         stage('Install') {
