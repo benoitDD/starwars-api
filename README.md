@@ -59,6 +59,7 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
   * apollo datasource graphql
   * mongoose
     * mongodb
+  * jsonwebtoken
 * npm
 * jenkins
 * vsc debug

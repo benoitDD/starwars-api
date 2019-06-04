@@ -31,6 +31,10 @@ type Query {
     starship(id: ID!):Starship
     "Rechercher des personnes, planètes, espèces, vaisseaux et véhicules"
     search(text: String!):[starwarsObject]!
+    "Se connecter"
+    signIn(login: String!, password: String!):ResponseSign!
+    "permet de se re-connecter en utilisant le token authentification dans le header"
+    reloadSignIn:ResponseSign!
 }
 
 """
@@ -41,4 +45,6 @@ type Mutation {
     addImageHeader(inputAddImage: InputAddImage!):ResponseMutation
     "Supprimer une image d'un objet"
     removeImage(inputRemoveImage: InputRemoveImage!):ResponseMutation
+    "S'enregistrer"
+    signUp(login: String!, password: String!):ResponseSign!
 }

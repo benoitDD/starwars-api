@@ -4,9 +4,9 @@ import {ApolloServer} from 'apollo-server-express'
 import {dataSources} from './dataSources'
 import typeDefs from './schema/index.gql'
 import resolvers from  './resolvers'
-import {formatError} from './utils'
 import cors from 'cors'
 import {connectDatabase} from './database'
+import {getSession, signIn} from './authentication.js'
 
 log.setLevel('INFO')
 
@@ -15,7 +15,16 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => (dataSources),
-    formatError
+    context: ({req}) => {
+        return getSession(req.headers)
+            .then(session => {
+                log.info(`Login:${session ? session.login: 'undefined!'}`)
+                return {
+                    session: session,
+                    signIn
+                }
+            })
+    },
 })
 
 const app = express()

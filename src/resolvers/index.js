@@ -5,6 +5,7 @@ import resolversStarships from './starships'
 import resolversVehicles from './vehicles'
 import resolversSearch from './search'
 import resolversCommun from './commun'
+import resolversSign from './sign'
 
 function createResolvers(...args){
     var resolvers = {}
@@ -23,6 +24,7 @@ function createResolvers(...args){
 }
 
 const resolvers = createResolvers(resolversPersons, resolversPlanets, resolversSpecies,
-    resolversStarships, resolversVehicles, resolversSearch, resolversCommun)
+    resolversStarships, resolversVehicles, resolversSearch, resolversCommun,
+    resolversSign)
 
 export default resolvers

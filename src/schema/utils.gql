@@ -58,7 +58,7 @@ type ResponseMutation{
     success: Boolean!
     "Le message d'erreur s'il y en a une"
     message: String
-    "Les détails de l'erreur par arguements donnés en entré de la mutation"
+    "Les détails de l'erreur par arguments donnés en entrés de la mutation"
     details: [DetailError]
     "L'objet mis à jour par la mutation"
     object: starwarsObject
@@ -88,4 +88,24 @@ type Image{
     title: String
     "La description de l'image"
     description: String
+}
+
+"""Le type de retour lorsqu'on utilise la connexion de l'utilisteur"""
+type ResponseSign{
+    "Connexion réussie"
+    success: Boolean!
+    "Le message de l'erreur"
+    message: String
+    "Le token de la session"
+    token: String
+    "Les détails de l'erreur par arguments donnés en entrés de la mutation"
+    details: [DetailError]
+    "L'utilisateur de la session"
+    user: User
+}
+
+"""Un utilisteur"""
+type User{
+    "Le login de l'utilisteur"
+    login: String!
 }
