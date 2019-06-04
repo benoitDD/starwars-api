@@ -11,13 +11,14 @@ client.connect(function (err) {
         return logging.error(`Error to connect to the database: ${err.messsage}`)
     }
     const db = client.db('starwars')
-    //Drop collection
+    //Drop collections
     Promise.all([
-        db.collection('objects').drop().catch(() => {})
+        db.collection('objects').drop().catch(() => {}),
+        db.collection('users').drop().catch(() => {})
     ])
         .then(() => {
+            //Create Collections
             return Promise.all([
-            //Create Collection
                 db.createCollection('objects', {
                     validator: {
                         $jsonSchema: {
@@ -57,15 +58,34 @@ client.connect(function (err) {
                         }
                     }
                 }),
+                db.createCollection('users', {
+                    validator: {
+                        $jsonSchema: {
+                            bsonType: 'object',
+                            required: ['login', 'password'],
+                            properties: {
+                                login: {
+                                    bsonType: 'string',
+                                    description: 'must be a string and is required'
+                                },
+                                password: {
+                                    bsonType: 'string',
+                                    description: 'must be a string and is required'
+                                }
+                            }
+                        }
+                    }
+                })
             ])
         })
         .then(() => {
-        //Create Indexe
+        //Create Indexes
             return Promise.all([
                 db.collection('objects').createIndexes( [
-                    { key: {'idExternal': 1 }, unique: true},
-                    { key: {'imagesHeader.filename': 1 }, unique: true, sparse:true}
-                ])
+                    { key: {'idExternal': 1}, unique: true},
+                    { key: {'imagesHeader.filename': 1}, unique: true, sparse: true}
+                ]),
+                db.collection('users').createIndex({ 'login': 1 }, {unique: true})
             ])
         })
         .then(() => {
