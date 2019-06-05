@@ -1,4 +1,5 @@
-import {getPageInfo, stringEmpty, ResponseMutation} from '../utils'
+import {getPageInfo, stringEmpty, ResponseMutation, resolverPrivate,
+    resolversPrivate} from '../utils'
 
 describe('Test de l\'utilitaire getPageInfo', () => {
     const totalCount = 50
@@ -95,4 +96,39 @@ describe('Util ResponseMutation', () => {
             object: {name: 'toto'}
         })
     })
+})
+
+describe('Test resolver private', () => {
+    var myResolverPrivate = resolverPrivate((a, b, context, c) => {
+        return a + b + c
+    })
+    test('Must return a function', () => {
+        expect(typeof myResolverPrivate).toBe('function')
+    })
+
+    test('Must throw a error authentication', () => {
+        expect(() => myResolverPrivate(1, 2, {}, 4)).toThrowError('You must authenticate')
+    }) 
+
+    test('Must return 7', () => {
+        expect(myResolverPrivate(1, 2, {session: 'titi'}, 4)).toBe(7)
+    }) 
+})
+
+describe('Test resolvers private', () => {
+    var myResolversPrivate = resolversPrivate(
+        {toto: (a, b, context, c) => {
+            return a + b + c
+        }})
+    test('Must return a function', () => {
+        expect(typeof myResolversPrivate).toBe('object')
+    })
+
+    test('Must be a function', () => {
+        expect(typeof myResolversPrivate.toto).toBe('function')
+    })
+
+    test('Must throw a error authentication', () => {
+        expect(() => myResolversPrivate.toto(1, 2, {}, 4)).toThrowError('You must authenticate')
+    }) 
 })
