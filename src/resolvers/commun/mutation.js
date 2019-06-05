@@ -1,4 +1,4 @@
-import {ResponseMutation, stringEmpty, handleError, ErrorAPI} from '../utils'
+import {ResponseMutation, stringEmpty, handleError, ErrorAPI, resolversPrivate} from '../utils'
 import {uploadImage, errorIfObjectSWAPINotExist, 
     returnObjectFull, removeImageOnDisk} from './utils'
 
@@ -62,4 +62,4 @@ const Mutation = {
     }
 }
 
-export default Mutation
+export default resolversPrivate(Mutation)

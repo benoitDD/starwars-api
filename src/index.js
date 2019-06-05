@@ -31,8 +31,16 @@ const app = express()
 
 app.use(process.env.PATH_IMAGES, express.static(`${__dirname}/../${process.env.DIRECTORY_IMAGE}`))
 
+const whitelist = process.env.CORS_ORIGIN.split(',')
+
 var corsOptions = {
-    origin: process.env.CORS_ORIGIN,
+    origin: function (origin, callback) {
+        if (!origin || whitelist.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(null, whitelist[0])
+        }
+    },
     optionsSuccessStatus: 200,
     maxAge: 600
 }
