@@ -32,6 +32,9 @@ DIRECTORY_IMAGE=images
 #Le chemin où l'utilisateur peut accéder aux images
 PATH_IMAGES=/images
 
+#Private key for the authentication
+PRIVATE_KEY_TOKEN=iamaprivatekeyfortheauthentificationtoken
+
 #Le répertoire i18n
 DIRECTORY_LOCALES_I18N=i18n/locales/{{lng}}/{{ns}}.json
 ```
