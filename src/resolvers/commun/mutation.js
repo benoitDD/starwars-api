@@ -1,18 +1,18 @@
-import {ResponseMutation, stringEmpty, handleError, ErrorAPI, resolversPrivate} from '../utils'
+import {ResponseAPI, stringEmpty, handleError, ErrorAPIHandle, resolversPrivate} from '../utils'
 import {uploadImage, errorIfObjectSWAPINotExist, 
     returnObjectFull, removeImageOnDisk} from './utils'
 
 const Mutation = {
-    addImageHeader: (_, {inputAddImage}, {dataSources}) => {
-        var response = new ResponseMutation()
+    addImageHeader: (_, {inputAddImage}, {dataSources , i18n}) => {
+        var response = new ResponseAPI()
         var image = inputAddImage.imageHeader
         if(stringEmpty(image.title)){
-            response.addDetailsError('title', 'A title must be fill')
+            response.addDetailsError('title', i18n.t('title.must.fill'))
         }
         if(!response.success){
             return response
         }
-        return errorIfObjectSWAPINotExist(inputAddImage.idExternal, inputAddImage.type, dataSources)
+        return errorIfObjectSWAPINotExist(inputAddImage.idExternal, inputAddImage.type, dataSources, i18n)
             .then(objectSWAPI => {
                 return Promise.all([
                     image.file.then(uploadImage), 
@@ -31,19 +31,19 @@ const Mutation = {
                     objectSWAPI
                 ])
             }).then(returnObjectFull)
-            .catch(handleError)
+            .catch(handleError(i18n))
     },
-    removeImage : (_,{inputRemoveImage}, { dataSources }) => {
+    removeImage : (_,{inputRemoveImage}, {dataSources, i18n}) => {
         return dataSources.database.objects.findObjectByIdExternal(inputRemoveImage.idExternal)
             .then(objectDB => {
                 if(!objectDB){
-                    throw new ErrorAPI(`L'objet d'identifiant ${inputRemoveImage.idExternal} n'existe pas`)
+                    throw new ErrorAPIHandle('object.id.unknow', {id: inputRemoveImage.idExternal})
                 }
                 const image = objectDB.imagesHeader && objectDB.imagesHeader.find(
                     image => image._id.toString() === inputRemoveImage.idImage
                 )
                 if(!image){
-                    throw new ErrorAPI(`L'objet d'identifiant ${inputRemoveImage.idExternal} n'a pas d'image d'indentifiant ${inputRemoveImage.idImage}`)
+                    throw new ErrorAPIHandle('object.id.not.image.id', {idObject: inputRemoveImage.idExternal, idImage: inputRemoveImage.idImage})
                 }
                 return removeImageOnDisk(image.filename)
             }).then(() => {
@@ -51,14 +51,14 @@ const Mutation = {
             })
             .then(objectDB => {
                 if(!objectDB){
-                    throw new ErrorAPI(`L'objet d'identifiant ${inputRemoveImage.idExternal} n'existe pas`)
+                    throw new ErrorAPIHandle('object.id.unknow', {id: inputRemoveImage.idExternal})
                 }
                 return Promise.all([
                     objectDB,
                     errorIfObjectSWAPINotExist(inputRemoveImage.idExternal, objectDB.type, dataSources)
                 ])
             }).then(returnObjectFull)
-            .catch(handleError)
+            .catch(handleError(i18n))
     }
 }
 

@@ -1,4 +1,4 @@
-import {getPageInfo, stringEmpty, ResponseMutation, resolverPrivate,
+import {getPageInfo, stringEmpty, ResponseAPI, resolverPrivate,
     resolversPrivate} from '../utils'
 
 describe('Test de l\'utilitaire getPageInfo', () => {
@@ -65,7 +65,7 @@ describe('Test de l\'utilitaire stringEmpty', () => {
 
 describe('Util ResponseMutation', () => {
     test('Util Response message', () => {
-        const response = new ResponseMutation()
+        const response = new ResponseAPI()
         expect(response).toEqual({
             success: true
         })
@@ -78,7 +78,7 @@ describe('Util ResponseMutation', () => {
     })
 
     test('Util Response details', () => {
-        const response = new ResponseMutation()
+        const response = new ResponseAPI()
         response.addDetailsError('name', 'name must be fill')
         response.addDetailsError('age', 'age must be a positive number')
         expect(response).toEqual({
@@ -89,7 +89,7 @@ describe('Util ResponseMutation', () => {
     })
 
     test('Util Response object', () => {
-        const response = new ResponseMutation()
+        const response = new ResponseAPI()
         response.setObject({name: 'toto'})
         expect(response).toEqual({
             success: true,

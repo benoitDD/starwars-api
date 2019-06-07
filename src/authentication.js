@@ -7,14 +7,14 @@ export function signIn(login){
     return jwt.sign({login}, privateKeyToken, { expiresIn: '1d' })
 }
 
-export function getSession(headers){
+export function getSession(headers, i18n){
     const authorization = headers.authorization
     var token = null
     if(authorization && authorization.length){
         const splitAuth = authorization.split(' ')
         const typeAuth = splitAuth[0]
         if(typeAuth !== 'Bearer'){
-            throw new ApolloError(`Authorization of type ${typeAuth} isn't allow`)
+            throw new ApolloError(i18n.t('auth.type.not.allow', {type: typeAuth}))
         }
         token = splitAuth[1]
     }
@@ -25,9 +25,9 @@ export function getSession(headers){
         jwt.verify(token, privateKeyToken, function(err, decoded) {
             if(err){
                 if(err.name === 'TokenExpiredError'){
-                    reject(new ApolloError('token expired', 'TOKEN_EXPIRED'))
+                    reject(new ApolloError(i18n.t('token.expired'), 'TOKEN_EXPIRED'))
                 }else if(err.name === 'JsonWebTokenError'){
-                    reject(new ApolloError('token invalid', 'TOKEN_INVALID'))
+                    reject(new ApolloError(i18n.t('token.invalid'), 'TOKEN_INVALID'))
                 }else {
                     reject(err)
                 }

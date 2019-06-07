@@ -6,7 +6,10 @@ import typeDefs from './schema/index.gql'
 import resolvers from  './resolvers'
 import cors from 'cors'
 import {connectDatabase} from './database'
-import {getSession, signIn} from './authentication.js'
+import i18n from './i18n'
+import i18nextMiddleware from 'i18next-express-middleware'
+import {FormatErrorWithContextExtension} from 'graphql-format-error-context-extension'
+import {formatError, context, corsOptions} from './utils'
 
 log.setLevel('INFO')
 
@@ -15,41 +18,22 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources: () => (dataSources),
-    context: ({req}) => {
-        return getSession(req.headers)
-            .then(session => {
-                log.info(`Login:${session ? session.login: 'undefined!'}`)
-                return {
-                    session: session,
-                    signIn
-                }
-            })
-    },
+    context,
+    extensions: [() => new FormatErrorWithContextExtension(formatError)]
 })
 
 const app = express()
 
 app.use(process.env.PATH_IMAGES, express.static(`${__dirname}/../${process.env.DIRECTORY_IMAGE}`))
 
-const whitelist = process.env.CORS_ORIGIN.split(',')
-
-var corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || whitelist.includes(origin)) {
-            callback(null, true)
-        } else {
-            callback(null, whitelist[0])
-        }
-    },
-    optionsSuccessStatus: 200,
-    maxAge: 600
-}
 app.use(cors(corsOptions))
+
+app.use(i18nextMiddleware.handle(i18n))
 
 server.applyMiddleware({app})
 
 app.get('/', (req, res) => {
-    res.send('Hello world')
+    res.send('Go to /graphql')
 })
 
 const PORT = process.env.PORT || 9090
@@ -57,7 +41,7 @@ const PORT = process.env.PORT || 9090
 app.listen(PORT, () => {
     connectDatabase()
         .then(() => (
-            log.info(`API démarré en mode ${process.env.NODE_ENV} sur le port ${PORT}`)
+            log.info(`API start in mode ${process.env.NODE_ENV} on port ${PORT}`)
         ))
         .catch(err => (
             log.error(`Error while connection to the database: ${err.message}`)

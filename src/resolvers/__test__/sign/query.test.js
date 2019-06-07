@@ -1,5 +1,6 @@
 import Query from '../../sign/query'
 import {dataSources} from '../../../dataSources'
+import {i18n} from '../../../test'
 
 jest.mock('../../../database/modelUser.js')
 
@@ -9,7 +10,7 @@ describe('Test sign in', () => {
     const signIn = Query.signIn
     test('User exist', () => {
         return expect(signIn(undefined, {login: 'somebody', password: 'exact'},
-            {dataSources, signIn: signInAuth})
+            {dataSources, signIn: signInAuth, i18n})
         ).resolves
             .toEqual({
                 success: true,
@@ -22,20 +23,20 @@ describe('Test sign in', () => {
     })
     test('Login don\'t exist', () => {
         return expect(signIn(undefined, {login: 'unknow', password: 'exact'},
-            {dataSources, signIn: signInAuth})
+            {dataSources, signIn: signInAuth, i18n})
         ).resolves
             .toEqual({
                 success: false,
-                message: 'Login or password is incorrect'
+                message: 'login.or.password.invalid'
             })
     })
     test('Wrong password ', () => {
         return expect(signIn(undefined, {login: 'somebody', password: 'unknow'},
-            {dataSources, signIn: signInAuth})
+            {dataSources, signIn: signInAuth, i18n})
         ).resolves
             .toEqual({
                 success: false,
-                message: 'Login or password is incorrect'
+                message: 'login.or.password.invalid'
             })
     })
 })

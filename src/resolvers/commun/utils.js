@@ -1,7 +1,7 @@
 import mime from 'mime-types'
 import uniqueSlug from 'unique-slug'
 import fs from 'fs'
-import {ErrorAPI, ResponseMutation} from '../utils'
+import {ErrorAPIHandle, ResponseAPI, ErrorAPI} from '../utils'
 
 const extensionAccept = ['png', 'jpeg', 'jpg']
 
@@ -48,7 +48,7 @@ export function loadObjectSWAPI(id, type, dataSources){
     case TYPE_VEHICLE:
         return dataSources.swapi.getVehicle(id)
     default:
-        throw Error(`The type ${type} don't handle`)
+        throw new ErrorAPI('type.not.handle', {type})
     }
 }
 
@@ -56,7 +56,7 @@ export function errorIfObjectSWAPINotExist(id, type, dataSources){
     return loadObjectSWAPI(id, type, dataSources)
         .then(objectSWAPI => {
             if(!objectSWAPI){
-                throw new ErrorAPI(`L'objet de type ${type} et d'identifiant ${id} n'existe pas`)
+                throw new ErrorAPIHandle('object.type.and.id.unknow', {type, id})
             }
             return objectSWAPI
         })
@@ -70,7 +70,7 @@ export function gatherObjectSWAPIAndDB(objectSwapi, objectDB){
 export function returnObjectFull([objectDB, objectSwapi]){
     const objectFull = gatherObjectSWAPIAndDB(objectSwapi, objectDB)
     objectFull.__typename = objectDB.type
-    let response = new ResponseMutation()
+    let response = new ResponseAPI()
     response.setObject(objectFull)
     return response
 }
@@ -79,7 +79,7 @@ export function removeImageOnDisk(filename){
     const path = `${process.env.DIRECTORY_IMAGE}/${filename}`
     return new Promise((resolve, reject) => {
         fs.unlink(path, (err) => {
-            if (err) reject(new ErrorAPI(err.message))
+            if (err) reject(new ErrorAPIHandle(err.message))
             resolve()
         })
     })

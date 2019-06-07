@@ -31,6 +31,9 @@ DIRECTORY_IMAGE=images
 
 #Le chemin où l'utilisateur peut accéder aux images
 PATH_IMAGES=/images
+
+#Le répertoire i18n
+DIRECTORY_LOCALES_I18N=i18n/locales/{{lng}}/{{ns}}.json
 ```
 
 Ensuite on peut packager et lancer l'application avec :
@@ -60,6 +63,7 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
   * mongoose
     * mongodb
   * jsonwebtoken
+  * i18next
 * npm
 * jenkins
 * vsc debug
