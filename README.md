@@ -60,6 +60,7 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
   * mongoose
     * mongodb
   * jsonwebtoken
+  * i18next
 * npm
 * jenkins
 * vsc debug

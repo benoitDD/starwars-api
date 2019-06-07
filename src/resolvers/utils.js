@@ -21,7 +21,7 @@ export function getPageInfo(objets, cursorFirstObjet, cursorLastObjet){
     }
 }
 
-export class ResponseMutation {
+export class ResponseAPI {
     constructor(){
         this.success = true
     }
@@ -49,24 +49,37 @@ export function stringEmpty(s){
 }
 
 export class ErrorAPI extends Error {
-    constructor(...args){
-        super(args)
+    constructor(codeI18n, params){
+        super()
+        this.codeI18n = codeI18n
+        this.params = params
     }
 }
 
-export function handleError(err){
-    if(err instanceof ErrorAPI){
-        let response = new ResponseMutation()
-        response.setMessageError(err.message)
-        return response
+export class ErrorAPIHandle extends Error {
+    constructor(codeI18n, params){
+        super()
+        this.codeI18n = codeI18n
+        this.params = params
     }
-    throw err
+}
+
+export function handleError(i18n){
+    return err => {
+        if(err instanceof ErrorAPIHandle){
+            let response = new ResponseAPI()
+            response.setMessageError(i18n.t(err.codeI18n, err.params))
+            return response
+        }
+        throw err
+    }
 }
 
 export function resolverPrivate(resolver){
     return function(parent, args, context, info){
+        const {i18n} = context
         if(!context || !context.session){
-            throw new AuthenticationError('You must authenticate')
+            throw new AuthenticationError(i18n ? i18n.t('you.must.authenticate') : 'You must authenticate')
         }
         return resolver(parent, args, context, info)
     }

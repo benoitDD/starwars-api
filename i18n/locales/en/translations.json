@@ -1,0 +1,13 @@
+{
+    "title.must.fill": "A title must be fill",
+    "object.type.and.id.unknow": "Object of type {{type}} and id {{id}} doesn't exist",
+    "object.id.unknow": "Object of id {{id}} doesn't exist",
+    "type.not.handle": "The type {{type}} doesn't handle",
+    "object.id.not.image.id": "The object of id {{idObject}} doesn't image of id {{idImage}}",
+    "login.exist": "Login exist already",
+    "login.or.password.invalid": "Login or password is incorrect",
+    "you.must.authenticate": "You must authenticate",
+    "auth.type.not.allow": "Authorization of type {{type}} isn't allow",
+    "token.expired": "Token expired",
+    "token.invalid": "Token invalid"
+}

@@ -61,6 +61,10 @@ const objectMore = {
     }],
     __typename: 'ObjectMore'
 }
+
+const i18n = {
+    t: jest.fn(i => i)
+}
     
 export {mockOnceQuery, mockNullOnceQuery, mockThrowOnceQuery, valueGetAllObjectSWAPI, valuePagination,
-    objectMore}
+    objectMore, i18n}

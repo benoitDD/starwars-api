@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt'
 
 const Query = {
-    signIn: (_, {login, password}, {dataSources, signIn}) => {
+    signIn: (_, {login, password}, {dataSources, signIn, i18n}) => {
         return dataSources.database.users.findByLogin(login)
             .then(user => {
                 if(!user){
                     return {
                         success: false,
-                        message: 'Login or password is incorrect'
+                        message: i18n.t('login.or.password.invalid')
                     }
                 }
                 return bcrypt.compare(password, user.password)
@@ -15,7 +15,7 @@ const Query = {
                         if(!match){
                             return {
                                 success: false,
-                                message: 'Login or password is incorrect'
+                                message: i18n.t('login.or.password.invalid')
                             }
                         }
                         const token = signIn(login)

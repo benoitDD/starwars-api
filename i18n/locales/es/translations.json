@@ -1,0 +1,13 @@
+{
+    "title.must.fill": "Un título debe ser llenado",
+    "object.type.and.id.unknow": "El objeto del tipo {{type}} y identificador {{id}} no existe",
+    "object.id.unknow": "El objeto del identificador {{id}} no existe",
+    "type.not.handle": "El tipo {{type}} no se maneja",
+    "object.id.not.image.id": "El objeto del identificador {{idObject}} no tiene una imagen de identidad {{idImage}}",
+    "login.exist": "El inicio de sesión ya existe",
+    "login.or.password.invalid": "El inicio de sesión o la contraseña son incorrectos",
+    "you.must.authenticate": "Tienes que identificar",
+    "auth.type.not.allow": "Autorización de tipo {{type}} no se maneja",
+    "token.expired": "El token ha caducado",
+    "token.invalid": "El token no es válido"
+}
