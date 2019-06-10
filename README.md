@@ -22,7 +22,8 @@ CORS_ORIGIN='http://localhost:5000'
 #L'api SWAPI
 SWAPI_URL='http://localhost:8080'
 
-#Le login et mot de passe de la base donnée
+#L'uri, login et mot de passe de la base donnée
+DB_URI=URI_DB_MONGODB
 DB_LOGIN=TON_LOGIN
 DB_PASSWORD=TON_MOT_DE_PASSE
 
@@ -33,11 +34,21 @@ DIRECTORY_IMAGE=images
 PATH_IMAGES=/images
 
 #Private key for the authentication
-PRIVATE_KEY_TOKEN=iamaprivatekeyfortheauthentificationtoken
+PRIVATE_KEY_TOKEN=A_KEY_FOR_TOKEN_AUTHENTIFICATION
 
 #Le répertoire i18n
 DIRECTORY_LOCALES_I18N=i18n/locales/{{lng}}/{{ns}}.json
 ```
+
+Ci-dessus, il faut obligatoirement remplacer les valeurs :
+* URI_DB_MONGODB: l'uri de ta base de donnée **mongodb**
+* TON_LOGIN: le login de ta base de donnée
+* TON_MOT_DE_PASSE: le mot de passe de ta base de donnée
+* A_KEY_FOR_TOKEN_AUTHENTIFICATION: une clé/mot de passe pour le token d'authentification (ex: dPRFUqV869uSFbEj)
+
+Après on créer la base de donnée **mongodb** avec :
+
+`npm run createDB`
 
 Ensuite on peut packager et lancer l'application avec :
 
