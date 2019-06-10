@@ -4,7 +4,7 @@ import * as log from 'loglevel'
 var logging = log.noConflict()
 logging.setLevel('INFO')
 
-var client = MongoClient(`mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@starwars-qkig8.mongodb.net?retryWrites=true`, { useNewUrlParser: true })
+var client = MongoClient(`mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@${process.env.DB_URI}?retryWrites=true`, { useNewUrlParser: true })
 
 client.connect(function (err) {
     if (err) {

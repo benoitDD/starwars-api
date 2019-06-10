@@ -7,6 +7,10 @@ Une api qui permet de consulter et d'enrichir des informations sur les personnag
 
 ## Installation
 
+Notre api consume l'api [swapi](https://github.com/graphql/swapi-graphql). Vous devez l'installer et la lancer.
+
+
+
 A l'intérieur du projet qu'on vient de télécharger :
 
 `npm install`
@@ -16,13 +20,14 @@ Il faut créer un fichier **.env** avec ces informations :
 ```
 PORT=9090
 
-#Les applications qui sont autorisés à se connecter à cette api
+#Les applications qui sont autorisées à se connecter à cette api
 CORS_ORIGIN='http://localhost:5000'
 
 #L'api SWAPI
 SWAPI_URL='http://localhost:8080'
 
-#Le login et mot de passe de la base donnée
+#L'uri, login et mot de passe de la base de donnée
+DB_URI=URI_DB_MONGODB
 DB_LOGIN=TON_LOGIN
 DB_PASSWORD=TON_MOT_DE_PASSE
 
@@ -33,11 +38,21 @@ DIRECTORY_IMAGE=images
 PATH_IMAGES=/images
 
 #Private key for the authentication
-PRIVATE_KEY_TOKEN=iamaprivatekeyfortheauthentificationtoken
+PRIVATE_KEY_TOKEN=A_KEY_FOR_TOKEN_AUTHENTIFICATION
 
 #Le répertoire i18n
 DIRECTORY_LOCALES_I18N=i18n/locales/{{lng}}/{{ns}}.json
 ```
+
+Ci-dessus, il faut obligatoirement remplacer les valeurs :
+* URI_DB_MONGODB: l'uri de ta base de donnée **mongodb**
+* TON_LOGIN: le login de ta base de donnée
+* TON_MOT_DE_PASSE: le mot de passe de ta base de donnée
+* A_KEY_FOR_TOKEN_AUTHENTIFICATION: une clé/mot de passe pour le token d'authentification (ex: dPRFUqV869uSFbEj)
+
+Après on peut créer la base de donnée **mongodb** avec :
+
+`npm run createDB`
 
 Ensuite on peut packager et lancer l'application avec :
 
@@ -45,7 +60,7 @@ Ensuite on peut packager et lancer l'application avec :
 
 `npm start`
 
-Maintenant, l'api est consultable à [cette adresse](http://localhost:9090).
+Maintenant, l'api est consultable à [cette adresse](http://localhost:9090/graphql).
 
 ## Outils utilisés
 
