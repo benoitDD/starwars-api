@@ -1,5 +1,6 @@
-import * as objects from './modelObject'
-import * as users from './modelUser'
+import {connectDatabase as connectDatabaseStarwars} from './starwars'
+import {connectDatabase as connectDatabaseRedis} from './redis'
 
-export const database = {objects, users}
-export {connectDatabase} from './connect'
+export function connectDatabase(){
+    return Promise.all([connectDatabaseStarwars(), connectDatabaseRedis()])
+}

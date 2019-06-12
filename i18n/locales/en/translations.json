@@ -9,5 +9,6 @@
     "you.must.authenticate": "You must authenticate",
     "auth.type.not.allow": "Authorization of type {{type}} isn't allow",
     "token.expired": "Token expired",
-    "token.invalid": "Token invalid"
+    "token.invalid": "Token invalid",
+    "token.blacklisted": "Token is blacklisted"
 }

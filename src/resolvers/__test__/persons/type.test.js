@@ -2,7 +2,7 @@ import Type from '../../persons/type'
 import {dataSources} from '../../../dataSources'
 import {objectMore} from '../../../test'
 
-jest.mock('../../../database/modelObject.js')
+jest.mock('../../../database/starwars/modelObject.js')
 
 const more = Type.Person.more
 test('Get person more', () => {
