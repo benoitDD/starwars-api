@@ -42,13 +42,17 @@ PRIVATE_KEY_TOKEN=A_KEY_FOR_TOKEN_AUTHENTIFICATION
 
 #Le répertoire i18n
 DIRECTORY_LOCALES_I18N=i18n/locales/{{lng}}/{{ns}}.json
+
+#L'adresse de ta bdd redis
+REDIS_URI=URI_DB_REDIS
 ```
 
 Ci-dessus, il faut obligatoirement remplacer les valeurs :
-* URI_DB_MONGODB: l'uri de ta base de donnée **mongodb**
+* URI_DB_MONGODB: l'uri de ta base de donnée **mongodb** (ex: starwars.mongodb.net)
 * TON_LOGIN: le login de ta base de donnée
 * TON_MOT_DE_PASSE: le mot de passe de ta base de donnée
 * A_KEY_FOR_TOKEN_AUTHENTIFICATION: une clé/mot de passe pour le token d'authentification (ex: dPRFUqV869uSFbEj)
+* URI_DB_REDIS: l'uri de ta base de donnée **redis** (ex: redis://192.168.99.100)
 
 Après on peut créer la base de donnée **mongodb** avec :
 

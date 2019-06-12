@@ -16,6 +16,7 @@ pipeline {
         DIRECTORY_IMAGE='images'
         PATH_IMAGES='/images'
         DIRECTORY_LOCALES_I18N='i18n/locales/{{lng}}/{{ns}}.json'
+        REDIS_URI= credentials('REDIS_URI')
     } 
     stages {
         stage('Install') {

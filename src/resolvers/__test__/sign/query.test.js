@@ -2,7 +2,7 @@ import Query from '../../sign/query'
 import {dataSources} from '../../../dataSources'
 import {i18n} from '../../../test'
 
-jest.mock('../../../database/modelUser.js')
+jest.mock('../../../database/starwars/modelUser.js')
 
 describe('Test sign in', () => {
     const token = 'a_token'

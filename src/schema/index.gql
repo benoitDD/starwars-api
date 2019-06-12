@@ -33,8 +33,10 @@ type Query {
     search(text: String!):[starwarsObject]!
     "Se connecter"
     signIn(login: String!, password: String!):ResponseSign!
-    "permet de se re-connecter en utilisant le token authentification dans le header"
+    "Permet de se re-connecter en utilisant le token authentification dans le header"
     reloadSignIn:ResponseSign!
+    "Permet de se déconnecter (on met le token d'authentification en liste noire)"
+    signOut:ResponseSign!
 }
 
 """

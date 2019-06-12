@@ -1,4 +1,4 @@
-import {objectMore} from '../../test'
+import {objectMore} from '../../../test'
 
 function findObjectByIdExternal(idExternal){
     return Promise.resolve(idExternal ? objectMore : null)

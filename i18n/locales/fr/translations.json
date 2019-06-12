@@ -9,5 +9,6 @@
     "you.must.authenticate": "Tu dois d'identifier",
     "auth.type.not.allow": "L'authorisation de type {{type}} n'est pas géré",
     "token.expired": "Le token a expiré",
-    "token.invalid": "Le token est invalide"
+    "token.invalid": "Le token est invalide",
+    "token.blacklisted": "Le token est sur liste noire"
 }

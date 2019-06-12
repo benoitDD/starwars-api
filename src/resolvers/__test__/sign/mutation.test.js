@@ -2,7 +2,7 @@ import Mutation from '../../sign/mutation'
 import {dataSources} from '../../../dataSources'
 import {i18n} from '../../../test'
 
-jest.mock('../../../database/modelUser.js')
+jest.mock('../../../database/starwars/modelUser.js')
 
 describe('Test sing up', () => {
     const signUp = Mutation.signUp
