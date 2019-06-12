@@ -86,6 +86,7 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090/graph
     * mongodb
   * jsonwebtoken
   * i18next
+  * redis
 * npm
 * jenkins
 * vsc debug
