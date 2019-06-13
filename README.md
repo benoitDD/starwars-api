@@ -69,24 +69,24 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090/graph
 ## Outils utilisés
 
 * nodejs
-  * express
-  * jest
-    * test
-    * coverage
-  * eslint
-    * graphql
-  * nodemon
-  * webpack
-    * babel
+* express
+* jest
+  * test
+  * coverage
+* eslint
   * graphql
-  * dotenv
-  * apollo server
-  * apollo datasource graphql
-  * mongoose
-    * mongodb
-  * jsonwebtoken
-  * i18next
-  * redis
+* nodemon
+* webpack
+  * babel
+* graphql
+* dotenv
+* apollo server
+* apollo datasource graphql
+* mongoose
+  * mongodb
+* jsonwebtoken
+* i18next
+* redis
 * npm
 * jenkins
 * vsc debug
