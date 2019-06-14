@@ -93,5 +93,6 @@ Maintenant, l'api est consultable à [cette adresse](http://localhost:9090/graph
 * vsc plugin Apollo Graphql
 * travis
   * codeclimate
+* gulp
 
 
