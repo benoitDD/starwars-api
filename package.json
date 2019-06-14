@@ -18,7 +18,7 @@
     "watch-debug": "nodemon --exec \"npm run build-dev && npm run debug\"",
     "watch-prod": "nodemon --exec \"npm run build-prod && npm start\"",
     "watch-prod-debug": "nodemon --exec \"npm run build-prod && npm run debug\"",
-    "createDB": "babel-node -r node_modules/dotenv/config db.js"
+    "createDB": "gulp"
   },
   "repository": {
     "type": "git",
@@ -58,12 +58,14 @@
     "@babel/core": "7.4.5",
     "@babel/node": "7.4.5",
     "@babel/preset-env": "7.4.5",
+    "@babel/register": "7.4.4",
     "babel-loader": "8.0.6",
     "clean-webpack-plugin": "2.0.2",
     "dotenv": "8.0.0",
     "eslint-plugin-graphql": "3.0.3",
     "graphql-cli": "3.0.11",
     "graphql-schema-linter": "0.2.0",
+    "gulp": "4.0.2",
     "jest": "24.8.0",
     "jest-transform-graphql": "2.1.0",
     "nodemon": "1.19.0",
