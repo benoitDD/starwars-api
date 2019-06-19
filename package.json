@@ -18,7 +18,8 @@
     "watch-debug": "nodemon --exec \"npm run build-dev && npm run debug\"",
     "watch-prod": "nodemon --exec \"npm run build-prod && npm start\"",
     "watch-prod-debug": "nodemon --exec \"npm run build-prod && npm run debug\"",
-    "createDB": "gulp"
+    "createDB": "gulp",
+    "aws": "npm run build-prod && npm start"
   },
   "repository": {
     "type": "git",

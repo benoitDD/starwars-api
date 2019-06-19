@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import {ApolloError} from 'apollo-server-express'
-import {tokenInBlacklist} from './database/redis'
 
 const privateKeyToken = process.env.PRIVATE_KEY_TOKEN || 'shhhhhhh'
 
@@ -33,13 +32,7 @@ export function getSession(headers, i18n){
                     reject(err)
                 }
             }else{
-                tokenInBlacklist(token)
-                    .then(isBlackListed => {
-                        if(isBlackListed){
-                            return reject(new ApolloError(i18n.t('token.blacklisted'), 'TOKEN_BLACKLISTED'))
-                        }
-                        resolve({...decoded, token})
-                    })
+                resolve({...decoded, token})
             }
         })
     })

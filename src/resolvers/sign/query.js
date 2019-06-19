@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-import {setTokenInBlacklist} from '../../database/redis'
 import {resolverPrivate} from '../utils'
 
 const Query = {
@@ -32,13 +31,10 @@ const Query = {
     reloadSignIn: (_, __, {session}) => {
         return session ? {success: true, user: session} : {success: false}
     },
-    signOut: resolverPrivate((_, __, {session: {token, exp}}) => {
-        return setTokenInBlacklist(token, exp)
-            .then(() => {
-                return {
-                    success: true
-                }
-            })
+    signOut: resolverPrivate( () => {
+        return {
+            success: true
+        }
     })
 }
 
