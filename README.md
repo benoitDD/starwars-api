@@ -1,6 +1,8 @@
 # starwars-api [![Build Status](https://travis-ci.org/benoitDD/starwars-api.svg?branch=master)](https://travis-ci.org/benoitDD/starwars-api) [![Maintainability](https://api.codeclimate.com/v1/badges/f9ac6fbb7e9dddfb5598/maintainability)](https://codeclimate.com/github/benoitDD/starwars-api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/f9ac6fbb7e9dddfb5598/test_coverage)](https://codeclimate.com/github/benoitDD/starwars-api/test_coverage)
 Une api qui permet de consulter et d'enrichir des informations sur les personnages, planètes, vaisseaux et véhicules de l'univers starwars.
 
+Une instance de l'application est mise sur [aws](http://starwars-env-api.n4jdk2npmn.us-east-2.elasticbeanstalk.com/graphql)
+
 ## Téléchargement
 
 `git clone https://github.com/benoitDD/starwars-api.git`
