@@ -51,7 +51,7 @@
     "mime-types": "2.1.24",
     "mongodb": "3.2.6",
     "mongoose": "5.5.11",
-    "redis": "2.8.0",
+    "redis": "3.1.1",
     "unique-slug": "2.0.1"
   },
   "devDependencies": {
